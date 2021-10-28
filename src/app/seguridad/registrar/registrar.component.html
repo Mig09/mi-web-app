@@ -1,0 +1,39 @@
+<section>
+  <form fxLayout="column" fxLayoutAlign="center center" #f="ngForm" (ngSubmit)="registrarUsuario(f)" fxLayoutGap="15px">
+
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input type="text" ngModel name="nombre" required placeholder="Escriba su nombre" matInput />
+      <mat-error>Debe escribir su nombre</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Apellido</mat-label>
+      <input type="text" ngModel name="apellido" required placeholder="Escriba su apellido" matInput />
+      <mat-error>Debe escribir su apellido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Nombre de Usuario</mat-label>
+      <input type="text" ngModel name="userName" required placeholder="Fonti09" matInput />
+      <mat-error>Debe escribir un nombre de usuario</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input type="email" matInput placeholder="ejemplo@gmail.com" ngModel name="email" email required #emailInput="ngModel"/>
+
+      <mat-error *ngIf="emailInput.hasError('required')">El email no puede estar en blanco</mat-error>
+      <mat-error *ngIf="!emailInput.hasError('required')">El email no es válido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field hintLabel="La contraseña debe tener 6 caracteres.">
+      <mat-label>Pass</mat-label>
+      <input type="password" matInput placeholder="Contraseña" ngModel name="pass" required minlength="6"/>
+
+      <mat-error>La pass debe tener más de 6 caracteres</mat-error>
+    </mat-form-field>
+
+    <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Guardar</button>
+  </form>
+</section>

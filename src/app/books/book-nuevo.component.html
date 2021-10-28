@@ -1,0 +1,48 @@
+<form #f="ngForm" (ngSumbit)="guardaLibro(f)">
+  <h1 mat-dialog-title>Agregar libro</h1>
+  <mat-dialog-content>
+    <section fxLayoutAlign="center" style="margin-top: 10px; margin-bottom: 10px">
+      <mat-card fxFlex="100%">
+        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+          <mat-form-field style="width: 100%">
+            <mat-label>Indique el título</mat-label>
+            <input type="text" matInput placeholder="Ej: Harry Potter" name="titulo" ngModel required />
+            <mat-error>Debe indicar un título</mat-error>
+          </mat-form-field>
+
+          <mat-form-field style="width: 100%">
+            <mat-label>Descripción</mat-label>
+            <input type="text" matInput placeholder="Ej: Un niño mago..." name="descripcion" ngModel required/>
+            <mat-error>Debe indicar una descripción</mat-error>
+          </mat-form-field>
+
+          <mat-form-field style="width: 100%">
+            <mat-label>Indique el precio</mat-label>
+            <input type="text" matInput placeholder="Ej: 32" name="precio" ngModel required/>
+            <mat-error>Debe indicar un precio</mat-error>
+          </mat-form-field>
+
+          <mat-form-field style="width: 100%">
+            <mat-label>Seleccione Autor</mat-label>
+            <mat-select [(ngModel)]="selectAutor" name="autor" (selectionChange)="selected($event)">
+              <mat-option value="1">Miguel Gutierrez</mat-option>
+              <mat-option value="2">Antonio Gutierrez</mat-option>
+              <mat-option value="3">Luis Muñoz</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Seleccione fecha de publicación" [matDatepicker]="picker" name="fechaPublicacion" [(ngModel)]="fechaPublicacion"/>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+
+          </mat-form-field>
+        </div>
+      </mat-card>
+    </section>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="true">Cerrar</button>
+    <button mat-button type="submit">Guardar</button>
+  </mat-dialog-actions>
+</form>
